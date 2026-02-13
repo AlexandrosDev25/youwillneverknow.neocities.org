@@ -1,0 +1,98 @@
+<!doctype html> <!-- DOCTYPE: indica que este documento usa HTML5 (estándar moderno) -->
+<html lang="es"> <!-- Atributo lang: indica el idioma principal del documento (útil para buscadores y lectores de pantalla) -->
+<head>
+  <!-- <head> contiene metadatos y recursos (no visibles directamente) -->
+  <meta charset="utf-8"> <!-- Codificación de caracteres: UTF-8 soporta acentos y símbolos -->
+  <meta name="viewport" content="width=device-width,initial-scale=1"> <!-- Hace que la página sea responsiva en móviles -->
+  <title>YouWillNeverKnow</title> <!-- Texto que aparece en la pestaña del navegador -->
+  <style>
+    /* --------------------------------------------- */
+    /* Reglas CSS básicas para que la página ocupe  */
+    /* toda la pantalla y no tenga márgenes por defecto */
+    /* --------------------------------------------- */
+    html, body { height: 100%; margin: 0; } /* Selector: aplica a <html> y <body>. height: 100% permite usar unidades relativas; margin: 0 elimina el margen por defecto del navegador */
+
+    /* --------------------------------------------- */
+    /* Fondo mediante un elemento <video> colocado detrás del contenido */
+    /* --------------------------------------------- */
+    body { 
+      /* Mantén la base: sin márgenes por defecto y altura mínima */
+      margin: 0; 
+      min-height: 100vh; /* 100vh = 100% de la altura de la ventana */
+
+      /* Color de respaldo mientras el video carga o si falla la carga */
+      background-color: #000000; /* Negro suele funcionar bien con videos oscuros */
+    }
+
+    /* Estilos para el <video> que funciona como fondo */
+    .bg-video {
+      position: fixed;     /* Fija el video relativo a la ventana (no se mueve al hacer scroll) */
+      inset: 0;            /* equivalente a top:0; right:0; bottom:0; left:0; */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;   /* Hace que el video se comporte como background-size: cover */
+      z-index: -1;         /* Sitúa el video detrás del contenido de la página */
+      pointer-events: none; /* Evita que el video capture clicks o gestos */
+    }
+
+    /* --------------------------------------------- */
+    /* Nota sobre rendimiento: usar imágenes muy grandes (en píxeles o en bytes)
+       hará que la página tarde en cargar. Optimiza las imágenes (dimensiones y compresión).
+    */
+  </style>
+</head>
+<body>
+  <!-- Esta página muestra únicamente un video como fondo (sin contenido visible). -->
+
+  <!-- ------------------------------------------------------------------ -->
+  <!-- Video de fondo (activo) - cada atributo y estilo está documentado     -->
+  <!-- ------------------------------------------------------------------ -->
+
+  <!--
+    <video>
+      - autoplay: inicia la reproducción automáticamente.
+      - muted: el video debe estar silenciado para permitir autoplay en la mayoría de navegadores modernos.
+      - loop: hace que el video se repita de forma indefinida.
+      - playsinline: en móviles evita que el video salga a pantalla completa al reproducirse.
+      - aria-hidden="true": indica a tecnologías de asistencia que este video es decorativo (no informativo).
+      - class="bg-video": aplica los estilos CSS que lo colocan detrás y lo hacen cubrir la pantalla.
+      - pointer-events: none (en CSS) evita que el video capture clicks o gestos, permitiendo interactuar con elementos superpuestos.
+  -->
+
+  <video autoplay muted loop playsinline aria-hidden="true" class="bg-video">
+    
+    <source src="photos-videos/sekiro_backgroundv.1.mp4" type="video/mp4"> <!-- Fuente del video: ruta relativa al HTML -->
+    <!-- Texto de respaldo para navegadores antiguos: -->
+    Tu navegador no soporta la etiqueta <video>.
+  </video>
+
+  <!-- Accesibilidad y buenas prácticas:
+       - Usar aria-hidden="true" es adecuado si el video es solo decorativo.
+       - Si el video transmite información (ej. instrucciones o texto), ofrece la misma información en texto accesible y añade controles (atributo controls) para permitir pausar.
+       - Ten en cuenta el rendimiento: optimiza el tamaño del video, ofrece versiones más ligeras para móviles o usa técnicas de carga diferida si es necesario.
+  -->
+
+</body>
+</html>
+
+<!-- ------------------------------------------------------------------ -->
+<!-- Notas adicionales sobre conceptos de informática relevantes:         -->
+<!-- ------------------------------------------------------------------ -->
+<!--
+  - Archivo y ruta:
+    * Ruta relativa: 'fondo.jpg' (busca en la misma carpeta que el HTML).
+    * Ruta relativa con subcarpeta: 'images/fondo.jpg'.
+    * Ruta absoluta: 'C:\Users\...' (no recomendable para páginas web públicas).
+  - Extensiones y formatos:
+    * JPEG/JPG: buen balance calidad/compresión para fotos.
+    * PNG: soporta transparencia, útil para gráficos.
+    * WebP: moderno, más eficiente (recomendado cuando sea compatible).
+    * MP4: formato de video, no es una imagen; para fondos de video usar la etiqueta <video>.
+  - Rendimiento y buenas prácticas:
+    * Redimensiona imágenes a las dimensiones reales necesarias (por ejemplo 1920px de ancho para pantallas grandes),
+      y utiliza compresión para reducir el tamaño en KB/MB.
+    * Considera usar imágenes adaptativas (srcset / picture) si planeas servir diferentes resoluciones según dispositivo.
+  - Cómo probar:
+    * Guarda los cambios y abre el archivo localmente con doble clic en 'index.html' o arrastrándolo al navegador.
+    * Para pruebas más reales, sirve la carpeta con un servidor local (por ejemplo: "npx http-server" o "python -m http.server") y abre http://localhost:8080.
+-->
