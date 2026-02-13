@@ -1,0 +1,11 @@
+# Archivos temporales de Claude Code
+tmpclaude-*
+
+# Otros archivos temporales comunes
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.env
+node_modules/
