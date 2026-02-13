@@ -10,105 +10,116 @@
     /* Reglas CSS básicas para que la página ocupe  */
     /* toda la pantalla y no tenga márgenes por defecto */
     /* --------------------------------------------- */
-    html, body { height: 100%; margin: 0; } /* Selector: aplica a <html> y <body>. height: 100% permite usar unidades relativas; margin: 0 elimina el margen por defecto del navegador */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* --------------------------------------------- */
-    /* Fondo mediante un elemento <video> colocado detrás del contenido */
-    /* --------------------------------------------- */
-    body { 
-      /* Mantén la base: sin márgenes por defecto y altura mínima */
-      margin: 0; 
-      min-height: 100vh; /* 100vh = 100% de la altura de la ventana */
-
-      /* Color de respaldo mientras el video carga o si falla la carga */
-      background-color: #000000; /* Negro suele funcionar bien con videos oscuros */
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
     }
 
     /* Estilos para el <video> que funciona como fondo */
     .bg-video {
-      position: fixed;     /* Fija el video relativo a la ventana (no se mueve al hacer scroll) */
-      inset: 0;            /* equivalente a top:0; right:0; bottom:0; left:0; */
+      position: fixed;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;   /* Hace que el video se comporte como background-size: cover */
-      z-index: -1;         /* Sitúa el video detrás del contenido de la página */
-      pointer-events: none; /* Evita que el video capture clicks o gestos */
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* --------------------------------------------- */
     /* Reproductor de música - cuadro rectangular retro */
     /* --------------------------------------------- */
     .music-player {
-      /* Posicionar el cuadro en el centro */
-      position: absolute;
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-
-      /* Dimensiones del cuadro rectangular */
-      width: 350px;
-      height: 250px;
-
-      /* Color marrón oscuro semi-transparente (permite ver video de fondo) */
-      background: rgba(25, 20, 15, 0.85);
-
-      /* Borde grosor 2px, color dorado (combina con Sekiro) */
-      border: 2px solid rgba(184, 134, 11, 0.8);
-
-      /* Esquinas ligeramente redondeadas para estética retro */
-      border-radius: 8px;
-
-      /* Espacio dentro del cuadro */
+      width: 400px;
+      height: 340px;
+      background: #0a1929;
+      border: 4px solid #1e3a8a;
+      border-radius: 0px;
       padding: 20px;
-
-      /* Asegurar que aparezca encima del video (z-index: -1) */
-      z-index: 1;
-
-      /* Centrar contenido internamente */
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       gap: 15px;
+      z-index: 100;
+      box-shadow: 0 0 20px rgba(30, 58, 138, 0.5);
+    }
+
+    /* Título de la canción */
+    .song-title {
+      color: #60a5fa;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 5px;
+      font-family: 'Courier New', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     /* Estilos para los botones del reproductor */
     .player-btn {
-      /* Dimensiones de botones */
-      width: 80px;
-      height: 40px;
-
-      /* Color de fondo: dorado sutilmente transparente */
-      background: rgba(184, 134, 11, 0.7);
-
-      /* Texto blanco para contrastar */
-      color: white;
-
-      /* Sin borde por defecto */
-      border: none;
-
-      /* Cursor como indicador de clickeable */
+      width: 60px;
+      height: 60px;
+      background: #1e40af;
+      color: #60a5fa;
+      border: 3px solid #60a5fa;
       cursor: pointer;
-
-      /* Fuente legible */
-      font-size: 14px;
-      font-weight: bold;
-
-      /* Borde redondeado */
-      border-radius: 5px;
-
-      /* Transición suave al hover */
-      transition: background 0.2s;
+      font-size: 28px;
+      border-radius: 0px;
+      transition: all 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', monospace;
     }
 
-    /* Cambiar color al pasar mouse sobre botón */
     .player-btn:hover {
-      background: rgba(184, 134, 11, 1);
+      background: #1e3a8a;
+      box-shadow: inset 0 0 10px rgba(96, 165, 250, 0.5);
+    }
+
+    .player-btn:active {
+      transform: scale(0.95);
+      background: #0f172a;
+    }
+
+    /* Botón Play principal - más grande */
+    .player-btn-main {
+      width: 80px;
+      height: 80px;
+      font-size: 36px;
+    }
+
+    /* Botones Pause y Stop - pequeños */
+    .player-btn-small {
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
     }
 
     /* Estilos para barra de volumen */
     .volume-control {
-      width: 80%;
+      width: 90%;
+      height: 8px;
+      background: #0f172a;
+      border: 2px solid #60a5fa;
+      border-radius: 0px;
+      cursor: pointer;
+      accent-color: #60a5fa;
     }
 
     /* Nota sobre rendimiento: usar imágenes muy grandes (en píxeles o en bytes)
@@ -117,7 +128,7 @@
   </style>
 </head>
 <body>
-  <!-- Esta página muestra únicamente un video como fondo (sin contenido visible). -->
+  <!-- REPRODUCE MÚS IXCA SI ESTO APARECE EN EL NAVEGADOR -->
 
   <!-- ------------------------------------------------------------------ -->
   <!-- Video de fondo (activo) - cada atributo y estilo está documentado     -->
@@ -134,21 +145,11 @@
       - pointer-events: none (en CSS) evita que el video capture clicks o gestos, permitiendo interactuar con elementos superpuestos.
   -->
 
-  <video autoplay muted loop playsinline aria-hidden="true" class="bg-video">
-    
-    <source src="multimedia/videos/sekiro_backgroundv.1.mp4" type="video/mp4"> <!-- Fuente del video: ruta relativa al HTML -->
-    <!-- Texto de respaldo para navegadores antiguos: -->
-    Tu navegador no soporta la etiqueta <video>.
-  </video>
-
-  <!-- Accesibilidad y buenas prácticas:
-       - Usar aria-hidden="true" es adecuado si el video es solo decorativo.
-       - Si el video transmite información (ej. instrucciones o texto), ofrece la misma información en texto accesible y añade controles (atributo controls) para permitir pausar.
-       - Ten en cuenta el rendimiento: optimiza el tamaño del video, ofrece versiones más ligeras para móviles o usa técnicas de carga diferida si es necesario.
-  -->
-
   <!-- Reproductor de música retro -->
   <div class="music-player">
+    <!-- Nombre de la canción -->
+    <div class="song-title">Bonobo - Prelude + Kiara</div>
+
     <!-- Elemento <audio>: contenedor que reproducirá el .mp3 -->
     <audio id="audioPlayer">
       <!-- <source>: ruta del archivo de música -->
@@ -156,20 +157,26 @@
     </audio>
 
     <!-- Contenedor de botones -->
-    <div style="display: flex; gap: 10px;">
-      <!-- Botón Play: ejecuta audio.play() -->
-      <button class="player-btn" id="playBtn">Play</button>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 10px;">
+      <!-- Play grande en el centro -->
+      <button class="player-btn player-btn-main" id="playBtn" title="Reproducir">▶</button>
 
-      <!-- Botón Pause: ejecuta audio.pause() -->
-      <button class="player-btn" id="pauseBtn">Pause</button>
-
-      <!-- Botón Stop: pausa y regresa al inicio -->
-      <button class="player-btn" id="stopBtn">Stop</button>
+      <!-- Pause y Stop pequeños abajo -->
+      <div style="display: flex; gap: 15px;">
+        <button class="player-btn player-btn-small" id="pauseBtn" title="Pausar">⏸</button>
+        <button class="player-btn player-btn-small" id="stopBtn" title="Detener">⏹</button>
+      </div>
     </div>
 
     <!-- Barra de volumen: input de tipo range (deslizable) -->
     <input type="range" id="volumeControl" class="volume-control" min="0" max="100" value="70">
   </div>
+
+  <!-- VIDEO AL FINAL PARA QUE ESTÉ DETRÁS -->
+  <video autoplay muted loop playsinline aria-hidden="true" class="bg-video">
+    <source src="multimedia/videos/sekiro_backgroundv.1.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta <video>.
+  </video>
 
   <!-- Cargar script.js (la lógica del reproductor) -->
   <script src="script.js"></script>
