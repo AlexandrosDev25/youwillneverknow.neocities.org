@@ -36,6 +36,81 @@
     }
 
     /* --------------------------------------------- */
+    /* Reproductor de música - cuadro rectangular retro */
+    /* --------------------------------------------- */
+    .music-player {
+      /* Posicionar el cuadro en el centro */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      /* Dimensiones del cuadro rectangular */
+      width: 350px;
+      height: 250px;
+
+      /* Color marrón oscuro semi-transparente (permite ver video de fondo) */
+      background: rgba(25, 20, 15, 0.85);
+
+      /* Borde grosor 2px, color dorado (combina con Sekiro) */
+      border: 2px solid rgba(184, 134, 11, 0.8);
+
+      /* Esquinas ligeramente redondeadas para estética retro */
+      border-radius: 8px;
+
+      /* Espacio dentro del cuadro */
+      padding: 20px;
+
+      /* Asegurar que aparezca encima del video (z-index: -1) */
+      z-index: 1;
+
+      /* Centrar contenido internamente */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Estilos para los botones del reproductor */
+    .player-btn {
+      /* Dimensiones de botones */
+      width: 80px;
+      height: 40px;
+
+      /* Color de fondo: dorado sutilmente transparente */
+      background: rgba(184, 134, 11, 0.7);
+
+      /* Texto blanco para contrastar */
+      color: white;
+
+      /* Sin borde por defecto */
+      border: none;
+
+      /* Cursor como indicador de clickeable */
+      cursor: pointer;
+
+      /* Fuente legible */
+      font-size: 14px;
+      font-weight: bold;
+
+      /* Borde redondeado */
+      border-radius: 5px;
+
+      /* Transición suave al hover */
+      transition: background 0.2s;
+    }
+
+    /* Cambiar color al pasar mouse sobre botón */
+    .player-btn:hover {
+      background: rgba(184, 134, 11, 1);
+    }
+
+    /* Estilos para barra de volumen */
+    .volume-control {
+      width: 80%;
+    }
+
     /* Nota sobre rendimiento: usar imágenes muy grandes (en píxeles o en bytes)
        hará que la página tarde en cargar. Optimiza las imágenes (dimensiones y compresión).
     */
@@ -71,6 +146,33 @@
        - Si el video transmite información (ej. instrucciones o texto), ofrece la misma información en texto accesible y añade controles (atributo controls) para permitir pausar.
        - Ten en cuenta el rendimiento: optimiza el tamaño del video, ofrece versiones más ligeras para móviles o usa técnicas de carga diferida si es necesario.
   -->
+
+  <!-- Reproductor de música retro -->
+  <div class="music-player">
+    <!-- Elemento <audio>: contenedor que reproducirá el .mp3 -->
+    <audio id="audioPlayer">
+      <!-- <source>: ruta del archivo de música -->
+      <source src="multimedia/audios/Bonobo - Prelude + Kiara.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Contenedor de botones -->
+    <div style="display: flex; gap: 10px;">
+      <!-- Botón Play: ejecuta audio.play() -->
+      <button class="player-btn" id="playBtn">Play</button>
+
+      <!-- Botón Pause: ejecuta audio.pause() -->
+      <button class="player-btn" id="pauseBtn">Pause</button>
+
+      <!-- Botón Stop: pausa y regresa al inicio -->
+      <button class="player-btn" id="stopBtn">Stop</button>
+    </div>
+
+    <!-- Barra de volumen: input de tipo range (deslizable) -->
+    <input type="range" id="volumeControl" class="volume-control" min="0" max="100" value="70">
+  </div>
+
+  <!-- Cargar script.js (la lógica del reproductor) -->
+  <script src="script.js"></script>
 
 </body>
 </html>
