@@ -27,46 +27,46 @@
 
 /* Estilos para el frame principal de la página */
   main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  display: flex; /* activa flexbox: alinea los hijos en fila o columna */
+  justify-content: center; /* centra los hijos horizontalmente */
+  align-items: center; /* centra los hijos verticalmente */
+  min-height: 100vh; /* mínimo ocupa toda la altura de la ventana */
   }
 
   .frame-principal {
-  position: relative;
-  width: 60vw;
-  height: 70vh;
-  background-color: rgba(18, 10, 10, 0.55); /* rojo muy oscuro, semi-transparente */
-  border: 1px solid rgba(180, 100, 100, 0.3); /* borde tenue que combina */
+  position: relative; /* le dice a sus hijos absolute: "mídanse desde mí" */
+  width: 60vw; /* 60% del ancho de la ventana */
+  height: 70vh; /* 70% de la altura de la ventana */
+  background-color: rgba(18, 10, 10, 0.55); /* negro rojizo semitransparente (0.55 = opacidad) */
+  border: 1px solid rgba(180, 100, 100, 0.3); /* borde tenue color vino */
   }
 
-  .frame-contenido {
-  position: absolute;
+  .frame-contenido { /* clase compartida por los dos frames de gif */
+  position: absolute; /* se posiciona dentro del padre relative (.frame-principal) */
   border: 1px solid rgba(180, 100, 100, 0.4);
-  overflow: hidden;
+  overflow: hidden; /* recorta el gif si se sale del borde del frame */
   }
 
-  .frame-contenido img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  .frame-contenido img { /* (hijo de .frame-contenido) aplica a los gifs dentro de cada frame */
+  width: 100%; /* ocupa todo el ancho del frame */
+  height: 100%; /* ocupa todo el alto del frame */
+  object-fit: cover; /* escala el gif para llenar el frame sin deformarlo */
   }
 
 /* gif de la chica: casi cuadrado */
-  .frame-top-left {
-  top: 30px;
-  left: 30px;
+  .frame-top-left { /* frame de la chica anime */
+  top: 30px; /* 30px desde el borde superior del padre (.frame-principal) */
+  left: 30px; /* 30px desde el borde izquierdo del padre */
   width: 220px;
   height: 220px;
   }
 
 /* gif de silent hill: horizontal */
-  .frame-bottom-right {
-  bottom: 30px;
-  right: 30px;
+  .frame-bottom-right { /* frame de silent hill */
+  bottom: 30px; /* 30px desde el borde inferior del padre */
+  right: 30px; /* 30px desde el borde derecho del padre */
   width: 300px;
-  height: 210px;
+  height: 210px; /* más ancho que alto porque el gif es horizontal */
   }
 
 /* Estilos para el <video> que funciona como fondo */
@@ -93,14 +93,14 @@
     
   </header>
 
-  <main>     <!-- Contenido principal de la página -->
-    <div class="frame-principal">
+  <main>     <!-- contenido principal de la página (reemplaza a <section>) -->
+    <div class="frame-principal"> <!-- padre: contenedor grande centrado -->
 
-    <div class="frame-contenido frame-top-left">
+    <div class="frame-contenido frame-top-left"> <!-- hijo: recibe dos clases a la vez (base + posición) -->
       <img src="multimedia/gifs/gif.gif" alt="chica anime">
     </div>
 
-    <div class="frame-contenido frame-bottom-right">
+    <div class="frame-contenido frame-bottom-right"> <!-- hijo: misma lógica, distinta posición -->
       <img src="multimedia/gifs/Silent Hill Dance GIF.gif" alt="silent hill dance">
      </div>
     </div>
