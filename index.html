@@ -25,16 +25,60 @@
       background-color: #000000; /* Negro suele funcionar bien con videos oscuros */
     }
 
-    /* Estilos para el <video> que funciona como fondo */
-    .bg-video {
-      position: fixed;     /* Fija el video relativo a la ventana (no se mueve al hacer scroll) */
-      inset: 0;            /* equivalente a top:0; right:0; bottom:0; left:0; */
-      width: 100%;
-      height: 100%;
-      object-fit: cover;   /* Hace que el video se comporte como background-size: cover */
-      z-index: -1;         /* Sitúa el video detrás del contenido de la página */
-      pointer-events: none; /* Evita que el video capture clicks o gestos */
-    }
+/* Estilos para el frame principal de la página */
+  main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  }
+
+  .frame-principal {
+  position: relative;
+  width: 60vw;
+  height: 70vh;
+  background-color: rgba(18, 10, 10, 0.55); /* rojo muy oscuro, semi-transparente */
+  border: 1px solid rgba(180, 100, 100, 0.3); /* borde tenue que combina */
+  }
+
+  .frame-contenido {
+  position: absolute;
+  border: 1px solid rgba(180, 100, 100, 0.4);
+  overflow: hidden;
+  }
+
+  .frame-contenido img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  }
+
+/* gif de la chica: casi cuadrado */
+  .frame-top-left {
+  top: 30px;
+  left: 30px;
+  width: 220px;
+  height: 220px;
+  }
+
+/* gif de silent hill: horizontal */
+  .frame-bottom-right {
+  bottom: 30px;
+  right: 30px;
+  width: 300px;
+  height: 210px;
+  }
+
+/* Estilos para el <video> que funciona como fondo */
+  .bg-video {
+  position: fixed;     /* Fija el video relativo a la ventana (no se mueve al hacer scroll) */
+  inset: 0;            /* equivalente a top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* Hace que el video se comporte como background-size: cover */
+  z-index: -1;         /* Sitúa el video detrás del contenido de la página */
+  pointer-events: none; /* Evita que el video capture clicks o gestos */
+  }
 
     /* --------------------------------------------- */
     /* Nota sobre rendimiento: usar imágenes muy grandes (en píxeles o en bytes)
@@ -45,15 +89,24 @@
 <body>
   <!-- Esta sección contiene el contenido de la página -->
 
-  <header>      <!-- Contenido de la cabecera de la página -->
+  <header>   <!-- Contenido de la cabecera de la página -->
     
   </header>
 
   <main>     <!-- Contenido principal de la página -->
-    
+    <div class="frame-principal">
+
+    <div class="frame-contenido frame-top-left">
+      <img src="multimedia/gifs/gif.gif" alt="chica anime">
+    </div>
+
+    <div class="frame-contenido frame-bottom-right">
+      <img src="multimedia/gifs/Silent Hill Dance GIF.gif" alt="silent hill dance">
+     </div>
+    </div>
   </main>
 
-  <footer>      <!-- Contenido del pie de la página -->
+  <footer>    <!-- Contenido del pie de la página -->
 
 
   </footer>
