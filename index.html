@@ -24,61 +24,61 @@
       /* Color de respaldo mientras el video carga o si falla la carga */
       background-color: #000000; /* Negro suele funcionar bien con videos oscuros */
     }
+    /* --------------------------------------------- */
+    /* Estilos para el frame principal de la página */
+    main {
+      display: flex; /* activa flexbox: alinea los hijos en fila o columna */
+      justify-content: center; /* centra los hijos horizontalmente */
+      align-items: center; /* centra los hijos verticalmente */
+      min-height: 100vh; /* mínimo ocupa toda la altura de la ventana */
+    }
 
-/* Estilos para el frame principal de la página */
-  main {
-  display: flex; /* activa flexbox: alinea los hijos en fila o columna */
-  justify-content: center; /* centra los hijos horizontalmente */
-  align-items: center; /* centra los hijos verticalmente */
-  min-height: 100vh; /* mínimo ocupa toda la altura de la ventana */
-  }
+    .frame-principal {
+      position: relative; /* le dice a sus hijos absolute: "mídanse desde mí" */
+      width: 60vw; /* 60% del ancho de la ventana */
+      height: 70vh; /* 70% de la altura de la ventana */
+      background-color: rgba(18, 10, 10, 0.55); /* negro rojizo semitransparente (0.55 = opacidad) */
+      border: 1px solid rgba(180, 100, 100, 0.3); /* borde tenue color vino */
+    }
 
-  .frame-principal {
-  position: relative; /* le dice a sus hijos absolute: "mídanse desde mí" */
-  width: 60vw; /* 60% del ancho de la ventana */
-  height: 70vh; /* 70% de la altura de la ventana */
-  background-color: rgba(18, 10, 10, 0.55); /* negro rojizo semitransparente (0.55 = opacidad) */
-  border: 1px solid rgba(180, 100, 100, 0.3); /* borde tenue color vino */
-  }
+    .frame-contenido { /* clase compartida por los dos frames de gif */
+      position: absolute; /* se posiciona dentro del padre relative (.frame-principal) */
+      border: 1px solid rgba(180, 100, 100, 0.4);
+      overflow: hidden; /* recorta el gif si se sale del borde del frame */
+    }
 
-  .frame-contenido { /* clase compartida por los dos frames de gif */
-  position: absolute; /* se posiciona dentro del padre relative (.frame-principal) */
-  border: 1px solid rgba(180, 100, 100, 0.4);
-  overflow: hidden; /* recorta el gif si se sale del borde del frame */
-  }
+    .frame-contenido img { /* (hijo de .frame-contenido) aplica a los gifs dentro de cada frame */
+      width: 100%; /* ocupa todo el ancho del frame */
+      height: 100%; /* ocupa todo el alto del frame */
+      object-fit: cover; /* escala el gif para llenar el frame sin deformarlo */
+    }
 
-  .frame-contenido img { /* (hijo de .frame-contenido) aplica a los gifs dentro de cada frame */
-  width: 100%; /* ocupa todo el ancho del frame */
-  height: 100%; /* ocupa todo el alto del frame */
-  object-fit: cover; /* escala el gif para llenar el frame sin deformarlo */
-  }
+    /* gif de la chica: casi cuadrado */
+    .frame-top-left { /* frame de la chica anime */
+      top: 30px; /* 30px desde el borde superior del padre (.frame-principal) */
+      left: 30px; /* 30px desde el borde izquierdo del padre */
+      width: 220px;
+      height: 220px;
+    }
 
-/* gif de la chica: casi cuadrado */
-  .frame-top-left { /* frame de la chica anime */
-  top: 30px; /* 30px desde el borde superior del padre (.frame-principal) */
-  left: 30px; /* 30px desde el borde izquierdo del padre */
-  width: 220px;
-  height: 220px;
-  }
+    /* gif de silent hill: horizontal */
+    .frame-bottom-right { /* frame de silent hill */
+      bottom: 30px; /* 30px desde el borde inferior del padre */
+      right: 30px; /* 30px desde el borde derecho del padre */
+      width: 300px;
+      height: 210px; /* más ancho que alto porque el gif es horizontal */
+    }
 
-/* gif de silent hill: horizontal */
-  .frame-bottom-right { /* frame de silent hill */
-  bottom: 30px; /* 30px desde el borde inferior del padre */
-  right: 30px; /* 30px desde el borde derecho del padre */
-  width: 300px;
-  height: 210px; /* más ancho que alto porque el gif es horizontal */
-  }
-
-/* Estilos para el <video> que funciona como fondo */
-  .bg-video {
-  position: fixed;     /* Fija el video relativo a la ventana (no se mueve al hacer scroll) */
-  inset: 0;            /* equivalente a top:0; right:0; bottom:0; left:0; */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;   /* Hace que el video se comporte como background-size: cover */
-  z-index: -1;         /* Sitúa el video detrás del contenido de la página */
-  pointer-events: none; /* Evita que el video capture clicks o gestos */
-  }
+    /* Estilos para el <video> que funciona como fondo */
+    .bg-video {
+      position: fixed;     /* Fija el video relativo a la ventana (no se mueve al hacer scroll) */
+      inset: 0;            /* equivalente a top:0; right:0; bottom:0; left:0; */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;   /* Hace que el video se comporte como background-size: cover */
+      z-index: -1;         /* Sitúa el video detrás del contenido de la página */
+      pointer-events: none; /* Evita que el video capture clicks o gestos */
+    }
 
     /* --------------------------------------------- */
     /* Nota sobre rendimiento: usar imágenes muy grandes (en píxeles o en bytes)
@@ -86,6 +86,7 @@
     */
   </style>
 </head>
+
 <body>
   <!-- Esta sección contiene el contenido de la página -->
 
