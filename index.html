@@ -1,143 +1,175 @@
-<!doctype html> <!-- DOCTYPE: indica que este documento usa HTML5 (estándar moderno) -->
-<html lang="es"> <!-- Atributo lang: indica el idioma principal del documento (útil para buscadores y lectores de pantalla) -->
+<!doctype html> <!-- indica que este documento usa HTML5 -->
+<html lang="es"> <!-- lang="es": el idioma del sitio es español -->
 <head>
-  <!-- <head> contiene metadatos y recursos (no visibles directamente) -->
-  <meta charset="utf-8"> <!-- Codificación de caracteres: UTF-8 soporta acentos y símbolos -->
-  <meta name="viewport" content="width=device-width,initial-scale=1"> <!-- Hace que la página sea responsiva en móviles -->
-  <title>YouWillNeverKnow</title> <!-- Texto que aparece en la pestaña del navegador -->
-  <link rel="icon" href="multimedia/photos/pixelsword_icon.jpeg" type="image/jpeg"> <!-- Icono de la pestaña ''Home' del navegador -->
+  <!-- head: configuración invisible de la página, no se muestra en pantalla -->
+  <meta charset="utf-8"> <!-- permite usar acentos y caracteres especiales -->
+  <meta name="viewport" content="width=device-width,initial-scale=1"> <!-- hace la página adaptable a móviles -->
+  <title>YouWillNeverKnow</title> <!-- texto que aparece en la pestaña del navegador -->
+  <link rel="icon" href="multimedia/photos/pixelsword_icon.jpeg" type="image/jpeg"> <!-- ícono de la pestaña -->
+
   <style>
-    /* --------------------------------------------- */
-    /* Reglas CSS básicas para que la página ocupe  */
-    /* toda la pantalla y no tenga márgenes por defecto */
-    /* --------------------------------------------- */
-    html, body { height: 100%; margin: 0; } /* Selector: aplica a <html> y <body>. height: 100% permite usar unidades relativas; margin: 0 elimina el margen por defecto del navegador */
+    /* Todo lo que está dentro de <style> es CSS: le da apariencia a los elementos HTML */
 
-    /* --------------------------------------------- */
-    /* Fondo mediante un elemento <video> colocado detrás del contenido */
-    /* --------------------------------------------- */
-    body { 
-      /* Mantén la base: sin márgenes por defecto y altura mínima */
-      margin: 0; 
-      min-height: 100vh; /* 100vh = 100% de la altura de la ventana */
-
-      /* Color de respaldo mientras el video carga o si falla la carga */
-      background-color: #000000; /* Negro suele funcionar bien con videos oscuros */
+    html, body {
+      height: 100%; /* ambos ocupan toda la altura disponible */
+      margin: 0;    /* elimina el margen blanco que pone el navegador por defecto */
     }
-    /* --------------------------------------------- */
-    /* Estilos para el frame principal de la página */
+
+    body {
+      margin: 0;
+      min-height: 100vh; /* mínimo ocupa toda la altura de la ventana del navegador */
+      background-color: #000000; /* color negro de respaldo si el video no carga */
+    }
+
+    /* ── HEADER ────────────────────────────────── */
+
+    header {
+      display: flex;          /* activa flexbox: organiza los hijos (h1 y nav) en fila o columna */
+      flex-direction: column; /* los apila verticalmente: título arriba, nav abajo */
+      align-items: center;    /* centra los hijos horizontalmente */
+      padding: 20px;          /* espacio interior de 20px en los 4 lados del header */
+      width: 100%;
+    }
+
+    .titulo {
+      font-size: 48px;          /* tamaño del texto del título */
+      text-align: center;       /* centra el texto dentro del elemento */
+      color: white;
+      margin: 20px 0 8px -33px;       /* elimina el margen por defecto del h1; deja 10px de espacio abajo */
+    }                           /* (margin: arriba: 20px derecha: 0 abajo: 8px izquierda: 0) */
+
+    .nav-bar {
+      display: flex;         /* pone todos los elementos de la nav en fila horizontal */
+      align-items: center;   /* los alinea al centro verticalmente */
+      gap: 8px;             /* espacio de 10px entre cada elemento de la fila */
+      color: white;
+      font-size: 18px; /* tamaño del texto de todos los <span> dentro de la nav */
+      width: 100%;
+      justify-content: center; /* centra toda la fila de elementos dentro de la nav */
+      }
+
+    .frame-nav {                              /* frame pequeño que va en el centro de la nav */
+      width: 250px;
+      min-width: 250px; /* asegura que el frame no se reduzca por debajo de 160px en pantallas pequeñas */
+      max-width: 250px; /* asegura que el frame no se expanda por encima de 160px en pantallas grandes */
+      height: 120px;
+      border: 1px solid rgba(180, 100, 100, 0.4);       /* borde color vino semitransparente */
+      background-color: rgba(18, 10, 10, 0.55);         /* fondo negro rojizo semitransparente */
+      /* rgba(rojo, verde, azul, opacidad) */
+      overflow: hidden;
+      position: relative; /* necesario para que object-fit funcione*/
+    }
+    .frame-nav img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; /* el gif ocupa todo el ancho del frame-nav*/
+      height: 100%; /*el gif ocupa todo el alto del frame-nav*/
+      object-fit: cover; /* recorta el gif para llenar el frame-nav sin deformarlo*/
+    }
+    /* ── MAIN ─────────────────────────────────── */
+
     main {
-      display: flex; /* activa flexbox: alinea los hijos en fila o columna */
-      justify-content: center; /* centra los hijos horizontalmente */
-      align-items: center; /* centra los hijos verticalmente */
-      min-height: 100vh; /* mínimo ocupa toda la altura de la ventana */
+      display: flex;
+      justify-content: center; /* centra el contenedor-principal horizontalmente */
+      align-items: center;     /* centra el contenedor-principal verticalmente */
+      min-height: 80vh;        /* ocupa el 80% de la altura de la ventana */
     }
 
-    .frame-principal {
-      position: relative; /* le dice a sus hijos absolute: "mídanse desde mí" */
-      width: 60vw; /* 60% del ancho de la ventana */
-      height: 70vh; /* 70% de la altura de la ventana */
-      background-color: rgba(18, 10, 10, 0.55); /* negro rojizo semitransparente (0.55 = opacidad) */
-      border: 1px solid rgba(180, 100, 100, 0.3); /* borde tenue color vino */
+    .contenedor-principal {
+      position: relative; /* convierte este div en punto de referencia para sus futuros hijos absolute */
+      width: 60vw;        /* 60% del ancho de la ventana (vw = viewport width) */
+      height: 65vh;       /* 65% de la altura de la ventana (vh = viewport height) */
+      border: 1px solid rgba(180, 100, 100, 0.3);
+      background-color: rgba(18, 10, 10, 0.55);
     }
 
-    .frame-contenido { /* clase compartida por los dos frames de gif */
-      position: absolute; /* se posiciona dentro del padre relative (.frame-principal) */
-      border: 1px solid rgba(180, 100, 100, 0.4);
-      overflow: hidden; /* recorta el gif si se sale del borde del frame */
+    .contenedor-principal img {
+      position: absolute; /* lo saca del flujo, no afecta la posición de otros elementos */
+      top: 0;
+      left: 0;
+      width: 100%; /* el gif ocupa todo el ancho del contenedor-principal */
+      height: 100%; /* el gif ocupa todo el alto del contenedor-principal */
+      object-fit: cover; /* recorta el gif para llenar el contenedor sin deformarlo */
     }
 
-    .frame-contenido img { /* (hijo de .frame-contenido) aplica a los gifs dentro de cada frame */
-      width: 100%; /* ocupa todo el ancho del frame */
-      height: 100%; /* ocupa todo el alto del frame */
-      object-fit: cover; /* escala el gif para llenar el frame sin deformarlo */
-    }
+    /* ── VIDEO DE FONDO ───────────────────────── */
 
-    /* gif de la chica: casi cuadrado */
-    .frame-top-left { /* frame de la chica anime */
-      top: 30px; /* 30px desde el borde superior del padre (.frame-principal) */
-      left: 30px; /* 30px desde el borde izquierdo del padre */
-      width: 220px;
-      height: 220px;
-    }
-
-    /* gif de silent hill: horizontal */
-    .frame-bottom-right { /* frame de silent hill */
-      bottom: 30px; /* 30px desde el borde inferior del padre */
-      right: 30px; /* 30px desde el borde derecho del padre */
-      width: 300px;
-      height: 210px; /* más ancho que alto porque el gif es horizontal */
-    }
-
-    /* Estilos para el <video> que funciona como fondo */
     .bg-video {
-      position: fixed;     /* Fija el video relativo a la ventana (no se mueve al hacer scroll) */
-      inset: 0;            /* equivalente a top:0; right:0; bottom:0; left:0; */
+      position: fixed;      /* se ancla a la ventana, no se mueve al hacer scroll */
+      inset: 0;             /* equivale a top:0; right:0; bottom:0; left:0 — cubre toda la ventana */
       width: 100%;
       height: 100%;
-      object-fit: cover;   /* Hace que el video se comporte como background-size: cover */
-      z-index: -1;         /* Sitúa el video detrás del contenido de la página */
-      pointer-events: none; /* Evita que el video capture clicks o gestos */
+      object-fit: cover;    /* escala el video para cubrir toda la pantalla sin deformarlo */
+      z-index: -1;          /* lo manda detrás de todo el contenido de la página */
+      pointer-events: none; /* impide que el video capture clicks o gestos del usuario */
     }
 
-    /* --------------------------------------------- */
-    /* Nota sobre rendimiento: usar imágenes muy grandes (en píxeles o en bytes)
-       hará que la página tarde en cargar. Optimiza las imágenes (dimensiones y compresión).
-    */
   </style>
 </head>
 
 <body>
-  <!-- Esta sección contiene el contenido de la página -->
+  <!-- body: todo lo visible de la página va aquí -->
 
-  <header>   <!-- Contenido de la cabecera de la página -->
-    
+  <header> <!--- header: contenedor semántico para la cabecera de la página, suele incluir título y navegación -->
+    <!-- h1: título principal de la página, solo debe haber uno por página -->
+    <h1 class="titulo">LOREM IPSUM</h1>
+
+    <!-- nav: contenedor semántico para grupos de navegación (menús, secciones) -->
+    <nav class="nav-bar">
+      <!-- span: caja de texto sin significado propio, solo agrupa texto para aplicarle estilos -->
+      <span>Home</span>
+      <span>|</span>   <!-- separador visual entre links -->
+      <span>News</span>
+      <span>|</span>
+      <span>Blog</span>
+      <span>|</span>
+
+      <!-- div: caja genérica sin significado semántico, usada aquí como frame decorativo -->
+      <div class="frame-nav">
+        <img src="multimedia/gifs/nyan-cat-tac-nayn.gif" alt="nyan cat gif">
+      </div> <!-- frame gif central de la nav, vacío por ahora -->
+
+      <span>|</span>
+      <span>Portfolio</span>
+      <span>|</span>
+      <span>Find me</span>
+      <span>|</span>
+      <span>Downloads</span>
+    </nav>
   </header>
 
-  <main>     <!-- contenido principal de la página (reemplaza a <section>) -->
-    <div class="frame-principal"> <!-- padre: contenedor grande centrado -->
-
-    <div class="frame-contenido frame-top-left"> <!-- hijo: recibe dos clases a la vez (base + posición) -->
-      <img src="multimedia/gifs/gif.gif" alt="chica anime">
-    </div>
-
-    <div class="frame-contenido frame-bottom-right"> <!-- hijo: misma lógica, distinta posición -->
-      <img src="multimedia/gifs/Silent Hill Dance GIF.gif" alt="silent hill dance">
-     </div>
+  <main> <!--- main: contenedor semántico para el contenido principal de la página --->
+    <!-- contenedor-principal: padre de los frames que vendrán después -->
+    <!-- position:relative en CSS lo convierte en punto de referencia para sus hijos absolute -->
+    <div class="contenedor-principal">
+      <!-- aquí irán los frames hijos en el siguiente paso -->
+      <img src="multimedia/gifs/cat-dance.gif" alt="cat dance gif">
     </div>
   </main>
 
-  <footer>    <!-- Contenido del pie de la página -->
 
 
-  </footer>
-
-  <!--
-    <video de fondo>
-      - autoplay: inicia la reproducción automáticamente.
-      - muted: el video debe estar silenciado para permitir autoplay en la mayoría de navegadores modernos.
-      - loop: hace que el video se repita de forma indefinida.
-      - playsinline: en móviles evita que el video salga a pantalla completa al reproducirse.
-      - aria-hidden="true": indica a tecnologías de asistencia que este video es decorativo (no informativo).
-      - class="bg-video": aplica los estilos CSS que lo colocan detrás y lo hacen cubrir la pantalla.
-      - pointer-events: none (en CSS) evita que el video capture clicks o gestos, permitiendo interactuar con elementos superpuestos.
-  -->
-
+  <!-- video de fondo: va al final del body porque es decorativo -->
+  <!-- position:fixed en CSS lo saca del flujo, no afecta la posición de ningún otro elemento -->
   <video autoplay muted loop playsinline aria-hidden="true" class="bg-video">
-    
-    <source src="multimedia/videos/sekiro_backgroundv.1.mp4" type="video/mp4"> <!-- Fuente del video: ruta relativa al HTML -->
-    <!-- Texto de respaldo para navegadores antiguos: -->
-    Tu navegador no soporta la etiqueta <video>.
+    <!-- autoplay: se reproduce solo al cargar la página -->
+    <!-- muted: silenciado (obligatorio para que autoplay funcione en navegadores modernos) -->
+    <!-- loop: se repite indefinidamente -->
+    <!-- playsinline: en móviles no abre pantalla completa -->
+    <!-- aria-hidden="true": le dice a lectores de pantalla que este video es decorativo -->
+    <source src="multimedia/videos/sekiro_backgroundv.1.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta video. <!-- texto de respaldo para navegadores muy antiguos -->
   </video>
 
-  <!-- Accesibilidad y buenas prácticas:
+</body>
+</html>
+
+<!-- Accesibilidad y buenas prácticas:
        - Usar aria-hidden="true" es adecuado si el video es solo decorativo.
        - Si el video transmite información (ej. instrucciones o texto), ofrece la misma información en texto accesible y añade controles (atributo controls) para permitir pausar.
        - Ten en cuenta el rendimiento: optimiza el tamaño del video, ofrece versiones más ligeras para móviles o usa técnicas de carga diferida si es necesario.
   -->
-
-</body>
-</html>
 
 <!-- ------------------------------------------------------------------ -->
 <!-- Notas adicionales sobre conceptos de informática relevantes:         -->
