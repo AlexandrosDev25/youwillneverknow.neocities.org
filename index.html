@@ -36,12 +36,12 @@
       text-align: center;       /* centra el texto dentro del elemento */
       color: white;
       margin: 20px 0 8px -68px;       /* elimina el margen por defecto del h1; deja 10px de espacio abajo */
-    }                           /* (margin: arriba: 20px derecha: 0 abajo: 8px izquierda: 0) */
+    }                           /* (margin: arriba: 20px derecha: 0 abajo: 8px izquierda: -68px) */
 
     .nav-bar {
       display: flex;         /* pone todos los elementos de la nav en fila horizontal */
       align-items: center;   /* los alinea al centro verticalmente */
-      gap: 8px;             /* espacio de 10px entre cada elemento de la fila */
+      gap: 8px;             /* espacio de 8px entre cada elemento de la fila */
       color: white;
       font-size: 18px; /* tamaño del texto de todos los <span> dentro de la nav */
       width: 100%;
@@ -50,8 +50,8 @@
 
     .frame-nav {                              /* frame pequeño que va en el centro de la nav */
       width: 250px;
-      min-width: 250px; /* asegura que el frame no se reduzca por debajo de 160px en pantallas pequeñas */
-      max-width: 250px; /* asegura que el frame no se expanda por encima de 160px en pantallas grandes */
+      min-width: 250px; /* asegura que el frame no se reduzca por debajo de 250px en pantallas pequeñas */
+      max-width: 250px; /* asegura que el frame no se expanda por encima de 250px en pantallas grandes */
       height: 120px;
       border: 1px solid rgba(180, 100, 100, 0.4);       /* borde color vino semitransparente */
       background-color: rgba(18, 10, 10, 0.55);         /* fondo negro rojizo semitransparente */
@@ -128,7 +128,7 @@
       <!-- div: caja genérica sin significado semántico, usada aquí como frame decorativo -->
       <div class="frame-nav">
         <img src="multimedia/gifs/nyan-cat-tac-nayn.gif" alt="nyan cat gif">
-      </div> <!-- frame gif central de la nav, vacío por ahora -->
+      </div> <!-- frame gif central de la nav, que es el padre del gif -absolute- que irá dentro--->
 
       <span>|</span>
       <span>Portfolio</span>
